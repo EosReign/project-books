@@ -8,31 +8,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/client/")
+@RequestMapping("/client")
 public class ClientController {
     private ClientService clientService;
     private ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public ResponseEntity<ClientDTO> addClient(@RequestBody Client client) {
         return ResponseEntity.ok(clientService.createClient(client));
     }
 
-    @GetMapping("get")
+    @GetMapping("/get")
     public ResponseEntity<ClientDTO> getClient(@RequestParam(name= "id") long id) {
         return ResponseEntity.ok(clientService.readClient(id));
     }
 
 
-    @PutMapping("update")
+    @PutMapping("/update")
     public ResponseEntity<ClientDTO> updateClient(@RequestBody Client client, @RequestParam(name="id") long id) {
         return ResponseEntity.ok(clientService.updateClient(client, id));
     }
 
-    @DeleteMapping("delete")
-    public ResponseEntity<Void> updateClient(@RequestParam(name="id") long id) {
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteClient(@RequestParam(name="id") long id) {
         clientService.deleteClient(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
