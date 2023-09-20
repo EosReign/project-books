@@ -7,7 +7,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/project_books
-    username: postgres
-    password: postgres
+    username: administer
+    password: books
   liquibase:
     change-log: classpath:liquibase/changelog.yml
