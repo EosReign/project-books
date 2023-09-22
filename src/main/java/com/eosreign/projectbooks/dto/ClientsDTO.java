@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ClientDTO {
-    private String name;
-    private String address;
-    private Long phone;
-
+public class ClientsDTO {
+    private List<ClientDTO> listDTO;
 }

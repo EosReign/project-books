@@ -15,16 +15,16 @@ public class BookService implements BookServiceImpl {
 
     public BookDTO createBook(Book book) {
         bookRepository.save(book);
-        return BookMapper.INSTANCE.toDTO(book);
+        return BookMapper.toDTO(book);
     }
     public BookDTO readBook(long id) {
         Book book = bookRepository.findById(id).get();
-        return BookMapper.INSTANCE.toDTO(book);
+        return BookMapper.toDTO(book);
     }
     public BookDTO updateBook(Book book, long id) {
         book.setId(id);
         bookRepository.save(book);
-        return BookMapper.INSTANCE.toDTO(book);
+        return BookMapper.toDTO(book);
     }
     public void deleteBook(long id) {
         bookRepository.deleteById(id);

@@ -20,5 +20,5 @@ public class Client {
     @Column(name= "client_address")
     private String address;
     @Column(name= "client_phone")
-    private int phone;
+    private long phone;
 }

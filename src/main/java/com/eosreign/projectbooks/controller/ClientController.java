@@ -1,6 +1,7 @@
 package com.eosreign.projectbooks.controller;
 
 import com.eosreign.projectbooks.dto.ClientDTO;
+import com.eosreign.projectbooks.dto.ClientsDTO;
 import com.eosreign.projectbooks.entity.Client;
 import com.eosreign.projectbooks.service.ClientService;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,11 @@ public class ClientController {
     @GetMapping("/get")
     public ResponseEntity<ClientDTO> getClient(@RequestParam(name= "id") long id) {
         return ResponseEntity.ok(clientService.readClient(id));
+    }
+
+    @GetMapping("/get_clients")
+    public ResponseEntity<ClientsDTO> getClients() {
+        return ResponseEntity.ok(clientService.readClients());
     }
 
 
