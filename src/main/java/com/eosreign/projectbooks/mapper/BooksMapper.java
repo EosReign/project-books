@@ -12,10 +12,7 @@ public class BooksMapper {
         BooksDTO dto = new BooksDTO();
         List<BookDTO> arrDTO = new ArrayList<>();
         for (Book entity: arrEntity) {
-            BookDTO cell = new BookDTO();
-            cell.setName(entity.getName());
-            cell.setText(entity.getText());
-            cell.setAuthorName(entity.getAuthorName());
+            BookDTO cell = BookMapper.toDTO(entity);
             arrDTO.add(cell);
         }
         dto.setListDTO(arrDTO);

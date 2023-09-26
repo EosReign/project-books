@@ -3,9 +3,6 @@ package com.eosreign.projectbooks.mapper;
 import com.eosreign.projectbooks.dto.ClientDTO;
 import com.eosreign.projectbooks.entity.Client;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ClientMapper {
     public static ClientDTO toDTO(Client entity) {
         ClientDTO dto = new ClientDTO();

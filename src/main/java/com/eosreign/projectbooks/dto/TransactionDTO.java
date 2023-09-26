@@ -1,16 +1,20 @@
 package com.eosreign.projectbooks.dto;
 
-import com.eosreign.projectbooks.entity.Book;
-import com.eosreign.projectbooks.entity.Client;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class TransactionDTO {
     private Date dateTake;
     private Date dateReturn;
 
-    private String clientName;
+    private Long clientId;
 
-    private String bookName;
+    private Long bookId;
     private boolean isClosed;
 }

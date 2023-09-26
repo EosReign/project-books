@@ -12,10 +12,7 @@ public class ClientsMapper {
         ClientsDTO dto = new ClientsDTO();
         List<ClientDTO> arrDTO = new ArrayList<>();
         for (Client entity: arrEntity) {
-            ClientDTO cell = new ClientDTO();
-            cell.setName(entity.getName());
-            cell.setAddress(entity.getAddress());
-            cell.setPhone(entity.getPhone());
+            ClientDTO cell = ClientMapper.toDTO(entity);
             arrDTO.add(cell);
         }
         dto.setListDTO(arrDTO);

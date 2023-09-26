@@ -11,7 +11,6 @@ public interface BookServiceImpl {
     BookDTO readBookByFulltext(String text);
     BooksDTO readBooksByAuthor(String name);
     BooksDTO readBooksByPublisher(String name);
-
     BookDTO updateBook(Book book, long id);
     void deleteBook(long id);
 }
