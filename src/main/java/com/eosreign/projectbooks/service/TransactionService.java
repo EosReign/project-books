@@ -3,6 +3,9 @@ package com.eosreign.projectbooks.service;
 import com.eosreign.projectbooks.dto.TransactionDTO;
 import com.eosreign.projectbooks.dto.TransactionsDTO;
 import com.eosreign.projectbooks.entity.Transaction;
+import com.eosreign.projectbooks.exception.BookNotFoundException;
+import com.eosreign.projectbooks.exception.ClientNotFoundException;
+import com.eosreign.projectbooks.exception.TransactionNotFoundException;
 import com.eosreign.projectbooks.mapper.TransactionMapper;
 import com.eosreign.projectbooks.mapper.TransactionsMapper;
 import com.eosreign.projectbooks.repository.BookRepository;
@@ -27,14 +30,14 @@ public class TransactionService implements TransactionServiceImpl {
 
     public TransactionDTO createTransaction(TransactionDTO dto) {
         Transaction entity = TransactionMapper.toEntity(dto);
-        entity.setBook(bookRepository.findById(dto.getBookId()).get());
-        entity.setClient(clientRepository.findById(dto.getClientId()).get());
+        entity.setBook(bookRepository.findById(dto.getBookId()).orElseThrow(BookNotFoundException::new));
+        entity.setClient(clientRepository.findById(dto.getClientId()).orElseThrow(ClientNotFoundException::new));
         transactionRepository.save(entity);
         return dto;
     }
 
     public TransactionDTO readTransaction(long id) {
-        Transaction entity = transactionRepository.findById(id).get();
+        Transaction entity = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
         return TransactionMapper.toDTO(entity);
     }
 
@@ -51,8 +54,8 @@ public class TransactionService implements TransactionServiceImpl {
     public TransactionDTO updateTransaction(TransactionDTO dto, long id) {
         Transaction entity = TransactionMapper.toEntity(dto);
         entity.setId(id);
-        entity.setBook(bookRepository.findById(dto.getBookId()).get());
-        entity.setClient(clientRepository.findById(dto.getClientId()).get());
+        entity.setBook(bookRepository.findById(dto.getBookId()).orElseThrow(BookNotFoundException::new));
+        entity.setClient(clientRepository.findById(dto.getClientId()).orElseThrow(ClientNotFoundException::new));
         transactionRepository.save(entity);
         return dto;
     }

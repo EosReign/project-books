@@ -1,6 +1,5 @@
 package com.eosreign.projectbooks.mapper;
 
-import com.eosreign.projectbooks.dto.ClientsDTO;
 import com.eosreign.projectbooks.dto.TransactionDTO;
 import com.eosreign.projectbooks.dto.TransactionsDTO;
 import com.eosreign.projectbooks.entity.Transaction;

@@ -3,6 +3,7 @@ package com.eosreign.projectbooks.service;
 import com.eosreign.projectbooks.dto.BookDTO;
 import com.eosreign.projectbooks.dto.BooksDTO;
 import com.eosreign.projectbooks.entity.Book;
+import com.eosreign.projectbooks.exception.BookNotFoundException;
 import com.eosreign.projectbooks.mapper.BookMapper;
 import com.eosreign.projectbooks.mapper.BooksMapper;
 import com.eosreign.projectbooks.repository.BookRepository;
@@ -22,7 +23,7 @@ public class BookService implements BookServiceImpl {
         return BookMapper.toDTO(book);
     }
     public BookDTO readBook(long id) {
-        Book book = bookRepository.findById(id).get();
+        Book book = bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
         return BookMapper.toDTO(book);
     }
 

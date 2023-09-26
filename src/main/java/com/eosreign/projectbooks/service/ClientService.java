@@ -3,6 +3,7 @@ package com.eosreign.projectbooks.service;
 import com.eosreign.projectbooks.dto.ClientDTO;
 import com.eosreign.projectbooks.dto.ClientsDTO;
 import com.eosreign.projectbooks.entity.Client;
+import com.eosreign.projectbooks.exception.ClientNotFoundException;
 import com.eosreign.projectbooks.mapper.ClientMapper;
 import com.eosreign.projectbooks.mapper.ClientsMapper;
 import com.eosreign.projectbooks.repository.ClientRepository;
@@ -22,7 +23,7 @@ public class ClientService implements ClientServiceImpl {
         return ClientMapper.toDTO(client);
     }
     public ClientDTO readClient(long id) {
-        Client client = clientRepository.findById(id).get();
+        Client client = clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
         return ClientMapper.toDTO(client);
     }
 
