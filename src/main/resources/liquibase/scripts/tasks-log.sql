@@ -21,13 +21,14 @@ CREATE TABLE book_table
 );
 
 --changeSet eosreign:3
-CREATE TABLE history_table
+CREATE TABLE transaction_table
 (
     id           SERIAL     PRIMARY KEY,
     date_take    DATE       NOT NULL,
     date_return  DATE       NOT NULL,
     client_id    INT8       ,
-    book_id      INT8
+    book_id      INT8       ,
+    is_closed    BOOLEAN    NOT NULL
 );
 
 

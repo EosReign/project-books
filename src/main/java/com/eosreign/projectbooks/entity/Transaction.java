@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Table(name = "history_table")
+@Table(name = "transaction_table")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class History {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,4 +28,7 @@ public class History {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
+
+    @Column(name = "is_closed")
+    private boolean isClosed = false;
 }

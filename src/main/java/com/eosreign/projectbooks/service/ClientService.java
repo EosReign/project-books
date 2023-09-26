@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class ClientService implements ClientServiceImpl {
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
     private ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }

@@ -1,9 +1,9 @@
 package com.eosreign.projectbooks.repository;
 
-import com.eosreign.projectbooks.entity.History;
+import com.eosreign.projectbooks.entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HistoryRepository extends JpaRepository<History, Long> {
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 }
