@@ -8,7 +8,9 @@ public class TransactionMapper {
         TransactionDTO dto = new TransactionDTO();
         dto.setDateTake(entity.getDateTake());
         dto.setDateReturn(entity.getDateReturn());
+        dto.setBookName(entity.getBook().getName());
         dto.setBookId(entity.getBook().getId());
+        dto.setClientName(entity.getClient().getName());
         dto.setClientId(entity.getClient().getId());
         dto.setClosed(entity.isClosed());
         return dto;

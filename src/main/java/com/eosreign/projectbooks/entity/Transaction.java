@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "transaction_table")
@@ -18,9 +18,9 @@ public class Transaction {
     @Column(name = "id")
     private long id;
     @Column(name= "date_take")
-    private Date dateTake;
+    private LocalDate dateTake;
     @Column(name= "date_return")
-    private Date dateReturn;
+    private LocalDate dateReturn;
 
     @ManyToOne
     @JoinColumn(name = "client_id")

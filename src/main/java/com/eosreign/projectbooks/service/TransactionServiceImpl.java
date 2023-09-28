@@ -9,5 +9,6 @@ public interface TransactionServiceImpl {
     TransactionsDTO readTransactionsByClientId(long id);
     TransactionsDTO readTransactionsByBookId(long id);
     TransactionDTO updateTransaction(TransactionDTO dto, long id);
+    TransactionDTO closeTransaction(long id);
     void deleteTransaction(long id);
 }

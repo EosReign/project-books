@@ -27,22 +27,27 @@ public class TransactionController {
     }
 
     @GetMapping("/get_transactions_by_client_id")
-    public ResponseEntity<TransactionsDTO> getTransactionsByClientId(@RequestParam(name= "id") long id) {
+    public ResponseEntity<TransactionsDTO> getTransactionsByClientId(@RequestParam(name= "client_id") long id) {
         return ResponseEntity.ok(transactionService.readTransactionsByClientId(id));
     }
 
     @GetMapping("/get_transactions_by_book_id")
-    public ResponseEntity<TransactionsDTO> getTransactionsByBookId(@RequestParam(name= "id") long id) {
+    public ResponseEntity<TransactionsDTO> getTransactionsByBookId(@RequestParam(name= "book_id") long id) {
         return ResponseEntity.ok(transactionService.readTransactionsByBookId(id));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<TransactionDTO> updateBook(@RequestBody TransactionDTO dto, @RequestParam(name="id") long id) {
+    public ResponseEntity<TransactionDTO> updateTransaction(@RequestBody TransactionDTO dto, @RequestParam(name="id") long id) {
         return ResponseEntity.ok(transactionService.updateTransaction(dto, id));
     }
 
+    @PutMapping("/close_transaction")
+    public ResponseEntity<TransactionDTO> closeTransaction(@RequestParam(name="id") long id) {
+        return ResponseEntity.ok(transactionService.closeTransaction(id));
+    }
+
     @DeleteMapping("/delete")
-    public ResponseEntity<Void> deleteBook(@RequestParam(name="id") long id) {
+    public ResponseEntity<Void> deleteTransaction(@RequestParam(name="id") long id) {
         transactionService.deleteTransaction(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

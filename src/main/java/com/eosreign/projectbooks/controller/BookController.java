@@ -39,8 +39,8 @@ public class BookController {
                 <br>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█""");
     }
     @PostMapping("/add")
-    public ResponseEntity<BookDTO> addBook(@RequestBody Book book) {
-        return ResponseEntity.ok(bookService.createBook(book));
+    public ResponseEntity<BookDTO> addBook(@RequestBody BookDTO dto) {
+        return ResponseEntity.ok(bookService.createBook(dto));
     }
 
     @GetMapping("/get")

@@ -9,6 +9,7 @@ public class BookMapper {
         dto.setName(entity.getName());
         dto.setText(entity.getText());
         dto.setAuthorName(entity.getAuthorName());
+        dto.setPublisher(entity.getPublisher());
         return dto;
     }
 
@@ -17,6 +18,7 @@ public class BookMapper {
         entity.setName(dto.getName());
         entity.setText(dto.getText());
         entity.setAuthorName(dto.getAuthorName());
+        entity.setPublisher(dto.getPublisher());
         return entity;
     }
 }

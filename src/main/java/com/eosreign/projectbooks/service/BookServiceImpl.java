@@ -5,7 +5,7 @@ import com.eosreign.projectbooks.dto.BooksDTO;
 import com.eosreign.projectbooks.entity.Book;
 
 public interface BookServiceImpl {
-    BookDTO createBook(Book book);
+    BookDTO createBook(BookDTO dto);
     BookDTO readBook(long id);
     BooksDTO readBooks();
     BookDTO readBookByFulltext(String text);

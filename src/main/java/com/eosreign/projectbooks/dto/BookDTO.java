@@ -11,5 +11,7 @@ public class BookDTO {
     private String name;
     private String text;
     private String authorName;
-    private Long client;
+    private String publisher;
+    private Long library;
+
 }
