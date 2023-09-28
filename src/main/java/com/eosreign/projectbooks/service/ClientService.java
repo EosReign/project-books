@@ -3,7 +3,10 @@ package com.eosreign.projectbooks.service;
 import com.eosreign.projectbooks.dto.ClientDTO;
 import com.eosreign.projectbooks.dto.ClientsDTO;
 import com.eosreign.projectbooks.entity.Client;
+import com.eosreign.projectbooks.exception.ClientAddressIsEmptyException;
+import com.eosreign.projectbooks.exception.ClientNameIsEmptyException;
 import com.eosreign.projectbooks.exception.ClientNotFoundException;
+import com.eosreign.projectbooks.exception.ClientPhoneIsEmptyException;
 import com.eosreign.projectbooks.mapper.ClientMapper;
 import com.eosreign.projectbooks.mapper.ClientsMapper;
 import com.eosreign.projectbooks.repository.ClientRepository;
@@ -18,9 +21,11 @@ public class ClientService implements ClientServiceImpl {
         this.clientRepository = clientRepository;
     }
 
-    public ClientDTO createClient(Client client) {
-        clientRepository.save(client);
-        return ClientMapper.toDTO(client);
+    public ClientDTO createClient(ClientDTO dto) {
+        checkData(dto);
+        Client entity = ClientMapper.toEntity(dto);
+        clientRepository.save(entity);
+        return dto;
     }
     public ClientDTO readClient(long id) {
         Client client = clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
@@ -32,12 +37,27 @@ public class ClientService implements ClientServiceImpl {
         return ClientsMapper.toDTO(arr);
     }
 
-    public ClientDTO updateClient(Client client, long id) {
-        client.setId(id);
-        clientRepository.save(client);
-        return ClientMapper.toDTO(client);
+    public ClientDTO updateClient(ClientDTO dto, long id) {
+        Client entity = ClientMapper.toEntity(dto);
+        entity.setId(id);
+        clientRepository.save(entity);
+        return dto;
     }
     public void deleteClient(long id) {
         clientRepository.deleteById(id);
+    }
+
+    private void checkData(ClientDTO dto) {
+        try {
+            if (dto.getName().isBlank()) throw new ClientNameIsEmptyException();
+            if (dto.getPhone().toString().isBlank()) throw new ClientPhoneIsEmptyException();
+            if (dto.getAddress().isBlank()) throw new ClientAddressIsEmptyException();
+        } catch (ClientNameIsEmptyException e) {
+            System.out.println("Введеное имя клиента пустое. ");
+        } catch (ClientPhoneIsEmptyException e) {
+            System.out.println("Введеный номер телефона пустой. ");
+        } catch (ClientAddressIsEmptyException e) {
+            System.out.println("Введеный адрес пустой. ");
+        }
     }
 }

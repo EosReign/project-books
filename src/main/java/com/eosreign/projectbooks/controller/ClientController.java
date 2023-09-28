@@ -17,8 +17,8 @@ public class ClientController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ClientDTO> addClient(@RequestBody Client client) {
-        return ResponseEntity.ok(clientService.createClient(client));
+    public ResponseEntity<ClientDTO> addClient(@RequestBody ClientDTO dto) {
+        return ResponseEntity.ok(clientService.createClient(dto));
     }
 
     @GetMapping("/get")
@@ -33,8 +33,8 @@ public class ClientController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<ClientDTO> updateClient(@RequestBody Client client, @RequestParam(name="id") long id) {
-        return ResponseEntity.ok(clientService.updateClient(client, id));
+    public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO dto, @RequestParam(name="id") long id) {
+        return ResponseEntity.ok(clientService.updateClient(dto, id));
     }
 
     @DeleteMapping("/delete")
