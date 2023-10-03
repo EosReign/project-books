@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Entity
 @Table(name = "client_table")
@@ -21,4 +22,6 @@ public class Client {
     private String address;
     @Column(name= "client_phone")
     private long phone;
+    @Column(name= "password")
+    private String password;
 }

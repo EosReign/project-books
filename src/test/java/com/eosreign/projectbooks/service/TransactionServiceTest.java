@@ -60,7 +60,7 @@ public class TransactionServiceTest {
                                             client, book, false);
         book = new Book(1l, "Мечтают ли андроиды об электроовцах?",
                 "randomText", "Philip Kindred Dick", "Sueta", null);
-        client = new Client(1l, "Bambuk Chiru Li", "Mongolia", 78923525315l);
+        client = new Client();
     }
     @AfterAll
     void endData() {
@@ -78,7 +78,6 @@ public class TransactionServiceTest {
         Mockito.when(transactionRepository.save(transactionEntity)).thenReturn(transactionEntity);
         assertThat(transactionEntity).isEqualTo(transactionService.createTransaction(rightTransaction));
         assertThat(transactionService.createTransaction(rightTransaction)).isNotNull();
-
     }
     @Test
     public void readTransactionTest() {

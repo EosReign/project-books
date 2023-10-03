@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ClientDTO {
-    private String name;
-    private String address;
+public class LoginReq {
     private Long phone;
-
-
+    private String password;
 }

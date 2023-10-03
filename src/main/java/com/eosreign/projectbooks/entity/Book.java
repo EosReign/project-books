@@ -25,8 +25,5 @@ public class Book {
     private String publisher;
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private Client client;
-
-
-
+    private Client library;
 }

@@ -8,10 +8,12 @@ import com.eosreign.projectbooks.mapper.BookMapper;
 import com.eosreign.projectbooks.mapper.BooksMapper;
 import com.eosreign.projectbooks.repository.BookRepository;
 import com.eosreign.projectbooks.repository.ClientRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class BookService implements BookServiceImpl {
     private final BookRepository bookRepository;
@@ -25,7 +27,7 @@ public class BookService implements BookServiceImpl {
     public BookDTO createBook(BookDTO dto) {
         checkData(dto);
         Book entity = BookMapper.toEntity(dto);
-        entity.setClient(clientRepository.findById(dto.getLibrary()).orElseThrow(ClientNotFoundException::new));
+        entity.setLibrary(clientRepository.findById(dto.getLibrary()).orElseThrow(ClientNotFoundException::new));
         bookRepository.save(entity);
         return dto;
     }
@@ -67,11 +69,14 @@ public class BookService implements BookServiceImpl {
             if (dto.getName().isBlank()) throw new BookNameIsEmptyException();
             if (dto.getAuthorName().isEmpty()) throw new BookAuthorNameIsEmptyException();
         } catch (BookTextIsEmptyException e) {
-            System.out.println("Текст книги пустой. ");
+            log.warn("Текст книги пустой. ");
+            throw new BookTextIsEmptyException();
         } catch (BookNameIsEmptyException e) {
-            System.out.println("Название книги отсутствует. ");
+            log.warn("Название книги отсутствует. ");
+            throw new BookNameIsEmptyException();
         } catch (BookAuthorNameIsEmptyException e) {
-            System.out.println("Псевдоним/Имя автора отсутствуют. ");
+            log.warn("Псевдоним/Имя автора отсутствуют. ");
+            throw new BookAuthorNameIsEmptyException();
         }
 
     }
