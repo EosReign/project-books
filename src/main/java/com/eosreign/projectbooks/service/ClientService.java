@@ -16,6 +16,7 @@ import com.eosreign.projectbooks.mapper.RegisterReqMapper;
 import com.eosreign.projectbooks.repository.AuthorityRepository;
 import com.eosreign.projectbooks.repository.ClientRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +26,11 @@ import java.util.List;
 public class ClientService implements ClientServiceImpl {
     private final ClientRepository clientRepository;
     private final AuthorityRepository authorityRepository;
-    private ClientService(ClientRepository clientRepository, AuthorityRepository authorityRepository) {
+    public ClientService(ClientRepository clientRepository, AuthorityRepository authorityRepository) {
         this.clientRepository = clientRepository;
         this.authorityRepository = authorityRepository;
     }
+
 
     public void createClient(RegisterReq req) {
         checkData(req);
@@ -39,25 +41,29 @@ public class ClientService implements ClientServiceImpl {
 
     //TODO прикрутить authentication
     public NewPassword setPassword(NewPassword pass) {
+
         return pass;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ClientDTO readClient(long id) {
         Client client = clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
         return ClientMapper.toDTO(client);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ClientsDTO readClients() {
         List<Client> arr = clientRepository.findAll();
         return ClientsMapper.toDTO(arr);
     }
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ClientDTO updateClient(ClientDTO dto, long id) {
         Client entity = ClientMapper.toEntity(dto);
         entity.setId(id);
         clientRepository.save(entity);
         return dto;
     }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteClient(long id) {
         clientRepository.deleteById(id);
     }

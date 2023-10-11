@@ -26,10 +26,6 @@ public class WebSecurityConfig {
             "/book/get_books_by_author", "/book/get_books_by_publisher",
             "/book/get"
     };
-    //TODO delete after TESTING
-    private static final String[] TEST_WHITELIST = {
-         "/client/**", "/transaction/**"
-    };
 
     @Bean
     public JdbcUserDetailsManager users(DataSource dataSource) {
@@ -46,15 +42,10 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) ->
-                        authz
-                                .requestMatchers(AUTH_WHITELIST).permitAll()
-                                .requestMatchers(TEST_WHITELIST).permitAll()
-                                .requestMatchers("/book/**").authenticated()
-                                .anyRequest().authenticated()
+                        authz.requestMatchers(AUTH_WHITELIST).permitAll()
                 )
                 .cors(withDefaults())
                 .httpBasic(withDefaults());
         return http.build();
     }
-
 }
