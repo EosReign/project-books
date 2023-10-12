@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "26e982cd-02d9-4997-84ba-6a280b710787",
+		"name": "ProjectBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28066190"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "createBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"senior pomidor\",\r\n    \"text\": \"Raz, Dva, Three, Four, Five, Six, Seven, Eight, Nine, Ten\",\r\n    \"authorName\": \"Bla Blabich\"\r\n    \"client\": \"123412\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/books/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readBook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/books/get?id=124124",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "124124"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBook",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/books/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBook",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/books/delete?id=123145",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "123145"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPicture",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "setPasswordClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"senior pomidor\",\r\n    \"address\": \"Omsk, bludnaya ulitsa 13\",\r\n    \"phone\": \"+7983384532\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/client/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readClient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/client/get?id=12142",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12142"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateClient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"senior pomidor\",\r\n    \"address\": \"Omsk, bludnaya ulitsa 13\",\r\n    \"phone\": \"+7983384532\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/client/update?id=124145",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "124145"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteClient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/client/delete?id=12445",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12445"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readClients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/client/get_clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"get_clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jmih Jmihobich\",\r\n    \"address\": \"Komsomol'skaya\",\r\n    \"phone\": 903412541,\r\n    \"password\": \"$2a$10$Fwh2.mUv.ncydkP/R7md3eWFV7eKXM3YvNXyh4zwCYnAFlCBVlcuO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone\": 903412541,\r\n    \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
