@@ -15,7 +15,13 @@ public class AuthController {
     private final AuthService authService;
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public ResponseEntity<LoginReq> login(@RequestBody LoginReq req) {
+    public ResponseEntity<LoginReq> loginPost(@RequestBody LoginReq req) {
+        log.info("Запускается метод Login. ");
+        return ResponseEntity.ok(authService.login(req));
+    }
+
+    @RequestMapping (value="/login", method = RequestMethod.GET)
+    public ResponseEntity<LoginReq> loginGet(@RequestBody LoginReq req) {
         log.info("Запускается метод Login. ");
         return ResponseEntity.ok(authService.login(req));
     }

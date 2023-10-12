@@ -5,9 +5,12 @@ import com.eosreign.projectbooks.dto.ClientsDTO;
 import com.eosreign.projectbooks.dto.NewPassword;
 import com.eosreign.projectbooks.service.ClientService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Slf4j
 @RestController
@@ -19,7 +22,7 @@ public class ClientController {
     }
 
     @PostMapping("/set_password")
-    public ResponseEntity<NewPassword> setPassword(@RequestBody NewPassword pass) {
+    public ResponseEntity<NewPassword> setPassword(@RequestBody NewPassword pass, Authentication authentication, Principal principal) {
         log.info("Задействован метод setPassword");
         return ResponseEntity.ok(clientService.setPassword(pass));
     }

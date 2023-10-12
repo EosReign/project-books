@@ -47,5 +47,12 @@ public class WebSecurityConfig {
                 .cors(withDefaults())
                 .httpBasic(withDefaults());
         return http.build();
+
+    }
+
+    @Bean
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests()
+                .requestMatchers("").
     }
 }
