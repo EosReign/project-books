@@ -14,7 +14,7 @@ import java.security.Principal;
 
 @Slf4j
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/clients")
 public class ClientController {
     private final ClientService clientService;
     private ClientController(ClientService clientService) {
@@ -27,26 +27,26 @@ public class ClientController {
         return ResponseEntity.ok(clientService.setPassword(pass));
     }
 
-    @GetMapping("/get")
+    @GetMapping()
     public ResponseEntity<ClientDTO> getClient(@RequestParam(name= "id") long id) {
         log.info("Задействован метод getClient");
         return ResponseEntity.ok(clientService.readClient(id));
     }
 
-    @GetMapping("/get_clients")
+    @GetMapping()
     public ResponseEntity<ClientsDTO> getClients() {
         log.info("Задействован метод getClients");
         return ResponseEntity.ok(clientService.readClients());
     }
 
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO dto, @RequestParam(name="id") long id) {
         log.info("Задействован метод updateClient");
         return ResponseEntity.ok(clientService.updateClient(dto, id));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping()
     public ResponseEntity<Void> deleteClient(@RequestParam(name="id") long id) {
         log.info("Задействован метод deleteClient");
         clientService.deleteClient(id);

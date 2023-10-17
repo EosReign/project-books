@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/transaction")
+@RequestMapping("/transactions")
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -18,43 +18,43 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<TransactionDTO> addTransaction(@RequestBody TransactionDTO dto) {
         log.info("Задействован метод addTransaction");
         return ResponseEntity.ok(transactionService.createTransaction(dto));
     }
 
-    @GetMapping("/get")
+    @GetMapping()
     public ResponseEntity<TransactionDTO> getTransaction(@RequestParam(name= "id") long id) {
         log.info("Задействован метод getTransaction");
         return ResponseEntity.ok(transactionService.readTransaction(id));
     }
 
-    @GetMapping("/get_transactions_by_client_id")
+    @GetMapping()
     public ResponseEntity<TransactionsDTO> getTransactionsByClientId(@RequestParam(name= "client_id") long id) {
         log.info("Задействован метод getTransactionsByClientId");
         return ResponseEntity.ok(transactionService.readTransactionsByClientId(id));
     }
 
-    @GetMapping("/get_transactions_by_book_id")
+    @GetMapping()
     public ResponseEntity<TransactionsDTO> getTransactionsByBookId(@RequestParam(name= "book_id") long id) {
         log.info("Задействован метод getTransactionsByBookId");
         return ResponseEntity.ok(transactionService.readTransactionsByBookId(id));
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<TransactionDTO> updateTransaction(@RequestBody TransactionDTO dto, @RequestParam(name="id") long id) {
         log.info("Задействован метод updateTransaction");
         return ResponseEntity.ok(transactionService.updateTransaction(dto, id));
     }
 
-    @PutMapping("/close_transaction")
+    @PutMapping("/close")
     public ResponseEntity<TransactionDTO> closeTransaction(@RequestParam(name="id") long id) {
         log.info("Задействован метод closeTransaction");
         return ResponseEntity.ok(transactionService.closeTransaction(id));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping()
     public ResponseEntity<Void> deleteTransaction(@RequestParam(name="id") long id) {
         log.info("Задействован метод deleteTransaction");
         transactionService.deleteTransaction(id);
