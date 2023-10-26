@@ -24,8 +24,8 @@ public class BookController {
         return ResponseEntity.ok(bookService.createBook(dto));
     }
 
-    @GetMapping()
-    public ResponseEntity<BookDTO> getBook(@RequestParam(name= "id") long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDTO> getBook(@PathVariable(name= "id") long id) {
         log.info("Задействован метод getBook");
         return ResponseEntity.ok(bookService.readBook(id));
     }
@@ -36,33 +36,33 @@ public class BookController {
         return ResponseEntity.ok(bookService.readBooks());
     }
 
-    @GetMapping()
-    public ResponseEntity<BookDTO> getBookByFulltext(@RequestParam(name= "fulltext") String text) {
+    @GetMapping("/{fulltext}")
+    public ResponseEntity<BookDTO> getBookByFulltext(@PathVariable(name= "fulltext") String text) {
         log.info("Задействован метод getBookByFulltext");
         return ResponseEntity.ok(bookService.readBookByFulltext(text));
     }
 
-    @GetMapping()
-    public ResponseEntity<BooksDTO> getBook(@RequestParam(name= "author") String name) {
+    @GetMapping("/{author}")
+    public ResponseEntity<BooksDTO> getBookByAuthor(@PathVariable(name= "author") String name) {
         log.info("Задействован метод getBook");
         return ResponseEntity.ok(bookService.readBooksByAuthor(name));
     }
 
-    @GetMapping()
-    public ResponseEntity<BooksDTO> getBooksByPublisher(@RequestParam(name= "publisher") String name) {
+    @GetMapping("/{publisher}")
+    public ResponseEntity<BooksDTO> getBooksByPublisher(@PathVariable(name= "publisher") String name) {
         log.info("Задействован метод getBooksByPublisher");
         return ResponseEntity.ok(bookService.readBooksByPublisher(name));
     }
 
 
-    @PutMapping()
-    public ResponseEntity<BookDTO> updateBook(@RequestBody Book book, @RequestParam(name="id") long id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<BookDTO> updateBook(@RequestBody Book book, @PathVariable(name="id") long id) {
         log.info("Задействован метод updateBook");
         return ResponseEntity.ok(bookService.updateBook(book, id));
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Void> deleteBook(@RequestParam(name="id") long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable(name="id") long id) {
         log.info("Задействован метод deleteBook");
         bookService.deleteBook(id);
         return new ResponseEntity<>(HttpStatus.OK);

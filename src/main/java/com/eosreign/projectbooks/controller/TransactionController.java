@@ -24,38 +24,38 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.createTransaction(dto));
     }
 
-    @GetMapping()
-    public ResponseEntity<TransactionDTO> getTransaction(@RequestParam(name= "id") long id) {
+    @GetMapping("/{id:\\d+}")
+    public ResponseEntity<TransactionDTO> getTransaction(@PathVariable(name= "id") long id) {
         log.info("Задействован метод getTransaction");
         return ResponseEntity.ok(transactionService.readTransaction(id));
     }
 
-    @GetMapping()
-    public ResponseEntity<TransactionsDTO> getTransactionsByClientId(@RequestParam(name= "client_id") long id) {
+    @GetMapping("/client_id/{client_id:\\d+}")
+    public ResponseEntity<TransactionsDTO> getTransactionsByClientId(@PathVariable(name= "client_id") long id) {
         log.info("Задействован метод getTransactionsByClientId");
         return ResponseEntity.ok(transactionService.readTransactionsByClientId(id));
     }
 
-    @GetMapping()
-    public ResponseEntity<TransactionsDTO> getTransactionsByBookId(@RequestParam(name= "book_id") long id) {
+    @GetMapping("/book_id/{book_id:\\d+}")
+    public ResponseEntity<TransactionsDTO> getTransactionsByBookId(@PathVariable(name= "book_id") long id) {
         log.info("Задействован метод getTransactionsByBookId");
         return ResponseEntity.ok(transactionService.readTransactionsByBookId(id));
     }
 
-    @PutMapping()
-    public ResponseEntity<TransactionDTO> updateTransaction(@RequestBody TransactionDTO dto, @RequestParam(name="id") long id) {
+    @PutMapping("/{id:\\d+}")
+    public ResponseEntity<TransactionDTO> updateTransaction(@RequestBody TransactionDTO dto, @PathVariable(name="id") long id) {
         log.info("Задействован метод updateTransaction");
         return ResponseEntity.ok(transactionService.updateTransaction(dto, id));
     }
 
-    @PutMapping("/close")
-    public ResponseEntity<TransactionDTO> closeTransaction(@RequestParam(name="id") long id) {
+    @PutMapping("/close/{id:\\d+}")
+    public ResponseEntity<TransactionDTO> closeTransaction(@PathVariable(name="id") long id) {
         log.info("Задействован метод closeTransaction");
         return ResponseEntity.ok(transactionService.closeTransaction(id));
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Void> deleteTransaction(@RequestParam(name="id") long id) {
+    @DeleteMapping("/{id:\\d+}")
+    public ResponseEntity<Void> deleteTransaction(@PathVariable(name="id") long id) {
         log.info("Задействован метод deleteTransaction");
         transactionService.deleteTransaction(id);
         return new ResponseEntity<>(HttpStatus.OK);

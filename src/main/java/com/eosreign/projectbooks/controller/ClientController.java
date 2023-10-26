@@ -27,8 +27,8 @@ public class ClientController {
         return ResponseEntity.ok(clientService.setPassword(pass));
     }
 
-    @GetMapping()
-    public ResponseEntity<ClientDTO> getClient(@RequestParam(name= "id") long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientDTO> getClient(@PathVariable(name= "id") long id) {
         log.info("Задействован метод getClient");
         return ResponseEntity.ok(clientService.readClient(id));
     }
@@ -40,14 +40,14 @@ public class ClientController {
     }
 
 
-    @PutMapping()
-    public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO dto, @RequestParam(name="id") long id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO dto, @PathVariable(name="id") long id) {
         log.info("Задействован метод updateClient");
         return ResponseEntity.ok(clientService.updateClient(dto, id));
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Void> deleteClient(@RequestParam(name="id") long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteClient(@PathVariable(name="id") long id) {
         log.info("Задействован метод deleteClient");
         clientService.deleteClient(id);
         return new ResponseEntity<>(HttpStatus.OK);

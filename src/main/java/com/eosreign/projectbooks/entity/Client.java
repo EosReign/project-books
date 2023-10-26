@@ -1,10 +1,9 @@
 package com.eosreign.projectbooks.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Entity
 @Table(name = "client_table")
