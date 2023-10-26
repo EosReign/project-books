@@ -18,72 +18,50 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping()
-    public ResponseEntity<String> getPicture() {
-        return ResponseEntity.ok("""
-                .
-                <br>══════════▄█▀▀▀▀▀▀█▄══▄▀▀▀▀▀▀▄
-                <br>════════▄▀░░░░░░▄▄▄▄▀█░░░░░░░░▀▄
-                <br>═══════█░░░░░░▀▀░░░░▀▀█▄▀▀▀▀▀▀▀█▄
-                <br>══════█░░░░░░░░▄▄████████▄░▄███████▄
-                <br>═════▄▀░░░░░░░▀███████████▄██████████▄
-                <br>════█▀░░░░░▄▀▀█▀░▄█▄███▄░▀█░▄█▄███░░░█
-                <br>═══█░░░░░░░▀▀█▀▀▄▄█████▄▄▀▀▄▄█████▀▀▀█
-                <br>══█▀░░░░░░░░░░▀▄▄▄▄▄▄▄▄▄▄▀░░░░░░░░▄█▀
-                <br>══█░░░░░░░░░░░░░░░░░░▄▀░░░░░░▀█▀▀▀█▄
-                <br>══█░░░░░░░░░░░▄▄▄▄░░░░░░░░░░░░░░░░░█
-                <br>══█░░░░░░░░▄▀▀░▄▄░▀▀▀▀▀▄▄▄▄▄▄▄▀▀▀▀▀▀█
-                <br>══▀█░░░░░█░▀▄▀▀░░▀▀▀▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄█
-                <br>══▄█▄▄░░░▀▄░░▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▄▄▄▄▄▀
-                <br>▄▀▀░▀██▄░░░▀▀░░░░░░░░░░░░░░▄▄▄▀▀
-                <br>░░░░░░▀▀███▄▄▄▄▄▄▄▄▄▄▄▄▄████▄
-                <br>░░░░░░░░░░▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀░░░▀█▄
-                <br>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█""");
-    }
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<BookDTO> addBook(@RequestBody BookDTO dto) {
         log.info("Задействован метод addBook");
         return ResponseEntity.ok(bookService.createBook(dto));
     }
 
-    @GetMapping("/get")
+    @GetMapping()
     public ResponseEntity<BookDTO> getBook(@RequestParam(name= "id") long id) {
         log.info("Задействован метод getBook");
         return ResponseEntity.ok(bookService.readBook(id));
     }
 
-    @GetMapping("/get_books")
+    @GetMapping()
     public ResponseEntity<BooksDTO> getBooks() {
         log.info("Задействован метод getBooks");
         return ResponseEntity.ok(bookService.readBooks());
     }
 
-    @GetMapping("/get_by_fulltext")
+    @GetMapping()
     public ResponseEntity<BookDTO> getBookByFulltext(@RequestParam(name= "fulltext") String text) {
         log.info("Задействован метод getBookByFulltext");
         return ResponseEntity.ok(bookService.readBookByFulltext(text));
     }
 
-    @GetMapping("/get_books_by_author")
+    @GetMapping()
     public ResponseEntity<BooksDTO> getBook(@RequestParam(name= "author") String name) {
         log.info("Задействован метод getBook");
         return ResponseEntity.ok(bookService.readBooksByAuthor(name));
     }
 
-    @GetMapping("/get_books_by_publisher")
+    @GetMapping()
     public ResponseEntity<BooksDTO> getBooksByPublisher(@RequestParam(name= "publisher") String name) {
         log.info("Задействован метод getBooksByPublisher");
         return ResponseEntity.ok(bookService.readBooksByPublisher(name));
     }
 
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<BookDTO> updateBook(@RequestBody Book book, @RequestParam(name="id") long id) {
         log.info("Задействован метод updateBook");
         return ResponseEntity.ok(bookService.updateBook(book, id));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping()
     public ResponseEntity<Void> deleteBook(@RequestParam(name="id") long id) {
         log.info("Задействован метод deleteBook");
         bookService.deleteBook(id);
